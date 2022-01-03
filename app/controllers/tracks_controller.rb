@@ -20,4 +20,5 @@ class TracksController < ApplicationController
     def track_params
         params.require(:track).permit(:spotify_track_id)
     end
+    
 end
