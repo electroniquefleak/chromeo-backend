@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  resources :playlists
-  resources :colors
-  resources :tracks
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :colors, only: [:index, :show]
+  resources :playlists, except: [:delete]
+  resources :tracks, only: [:show, :create]
 end
