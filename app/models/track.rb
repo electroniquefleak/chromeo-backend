@@ -1,4 +1,3 @@
 class Track < ApplicationRecord
-    belongs_to :playlist, :dependent => :destroy
-    belongs_to :color, :dependent => :destroy
+    has_many :playlists
 end

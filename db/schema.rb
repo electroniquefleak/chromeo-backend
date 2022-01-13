@@ -10,31 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_03_171042) do
+ActiveRecord::Schema.define(version: 2022_01_11_050538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "colors", force: :cascade do |t|
-    t.string "name"
-    t.string "hex"
-    t.string "genre"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "playlists", force: :cascade do |t|
     t.string "name"
-    t.integer "playlist_id"
-    t.string "spotify_playlist_id"
+    t.jsonb "tracks"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_playlists_on_user_id"
   end
 
   create_table "tracks", force: :cascade do |t|
-    t.string "spotify_track_id"
+    t.string "title"
+    t.string "spotify_ID"
+    t.boolean "explicit"
+    t.string "artist"
+    t.integer "length_ms"
+    t.string "art"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.string "spotify_ID"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  add_foreign_key "playlists", "users"
 end

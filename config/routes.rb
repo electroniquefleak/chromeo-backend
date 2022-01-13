@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :colors, only: [:index, :show]
-  resources :playlists, except: [:delete]
-  resources :tracks, only: [:show, :create]
+  resources :playlists
+  resources :tracks
+  resources :users
+  resources :sessions, only: [:create]
 end
