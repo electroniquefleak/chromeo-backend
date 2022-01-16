@@ -6,7 +6,6 @@ class PlaylistsController < ApplicationController
 
     def create
         @playlist = Playlist.new(playlist_params)
-        tracksHash = {tracks: params[:tracks]} 
         if @playlist.save
             puts "Playlist created!"
             render json: @playlist

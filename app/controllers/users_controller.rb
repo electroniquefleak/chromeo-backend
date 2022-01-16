@@ -7,7 +7,6 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
-        puts "Here's the password length: #{@user.password}"
         if @user.save
             user_with_token(@user)
         else
